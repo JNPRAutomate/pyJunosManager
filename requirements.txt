@@ -1,0 +1,13 @@
+Jinja2==2.7.3
+MarkupSafe==0.23
+PyYAML==3.11
+ecdsa==0.11
+junos-eznc==1.0.2
+lxml==3.4.1
+ncclient==0.4.2
+netaddr==0.7.12
+paramiko==1.15.1
+pyJunosManager==0.1
+pycrypto==2.6.1
+scp==0.8.0
+wsgiref==0.1.2
