@@ -1,4 +1,4 @@
-"""A Junos PyEZ
+"""A Junos helper module to accomplish some simple tasks
 
 .. moduleauthor:: Rob Cameron <rcameron@juniper.net>
 """
@@ -12,4 +12,4 @@ from . import version
 __version__ = version.VERSION
 __date__ = version.DATE
 
-from pyJunosManager import pyJunosManager
+from pyJunosManager import JunosDevice

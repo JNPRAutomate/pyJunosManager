@@ -1,30 +1,50 @@
-"""
-.. module:: pyJunosManager
-   :platform: Unix, Windows, Mac
-   :synopsis: A simplified module to handle common Junos tasks
-
-"""
 from jnpr.junos import Device
 from jnpr.junos.cfg.resource import Resource
 from jnpr.junos.utils.config import Config
 from jinja2 import Template
 
-class pyJunosManager():
-    def __init__(self,host="",username="",password=""):
-        """
-        pyJunosManager constructor
+class JunosDevice():
+    """
+    JunosDevice
 
-        Args:
-            :host: string containing the host to connect to
-            :username: string containing the username to authenticate with
-            :password: string contining the password to authenticate with
-        """
+    Args:
+        :host: string containing the host to connect to
+        :username: string containing the username to authenticate with
+        :password: string contining the password to authenticate with
+
+
+
+    Examples:
+
+    Basic device connection:
+
+    .. code-block:: python
+
+        from pyJunosManager import JunosDevice
+
+        dev = JunosDevice(host="1.2.3.4",username="root",password="Juniper")
+        dev.open()
+        print dev.get_facts()
+        dev.close()
+
+    """
+    def __init__(self,host="",username="",password=""):
         self.dev = Device(host=host,user=username,password=password)
         self.dev.bind(cu=Config)
 
     def open(self):
         """
         Opens a NETCONF session to the specified Junos-based device
+
+        Example:
+
+        .. code-block:: python
+
+            from pyJunosManager import JunosDevice
+
+            //creates a connection to the Junos device
+            dev = JunosDevice(host="1.2.3.4",username="root",password="Juniper")
+            dev.open()
 
         """
         try:
@@ -36,6 +56,16 @@ class pyJunosManager():
         """
         Closes a NETCONF session to the specified device
 
+        Example:
+
+        .. code-block:: python
+
+            from pyJunosManager import JunosDevice
+
+            dev = JunosDevice(host="1.2.3.4",username="root",password="Juniper")
+            dev.open()
+            dev.close()
+
         """
         try:
             self.dev.close()
@@ -46,12 +76,28 @@ class pyJunosManager():
         """
         Returns the device facts as a Python dict
 
+        Example:
+
+        .. code-block:: python
+
+            from pyJunosManager import JunosDevice
+            import pprint
+
+            dev = JunosDevice(host="1.2.3.4",username="root",password="Juniper")
+            dev.open()
+            facts = dev.get_facts()
+            dev.close()
+
+            pprint facts
         """
         return self.dev.facts
 
     def open_config(self,type="shared"):
         """
         Opens the configuration of the currently connected device
+
+        Args:
+            :type: The type of configuration you want to open. Any string can be provided, however the standard supported options are: **exclusive**, **private**, and **shared**. The default mode is **shared**.
 
         """
         try:
