@@ -11,5 +11,6 @@ from . import version
 
 __version__ = version.VERSION
 __date__ = version.DATE
+__all__ = ["JunosDevice"]
 
 from pyJunosManager import JunosDevice

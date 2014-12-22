@@ -99,6 +99,29 @@ class JunosDevice():
         Args:
             :type: The type of configuration you want to open. Any string can be provided, however the standard supported options are: **exclusive**, **private**, and **shared**. The default mode is **shared**.
 
+        Examples:
+
+        .. code-block:: python
+
+            #Open shared config
+
+            from pyJunosManager import JunosDevice
+
+            dev = JunosDevice(host="1.2.3.4",username="root",password="Juniper")
+            dev.open()
+            dev.open_config()
+            dev.close_config()
+            dev.close()
+
+            #Open private config
+
+            from pyJunosManager import JunosDevice
+
+            dev = JunosDevice(host="1.2.3.4",username="root",password="Juniper")
+            dev.open()
+            dev.open_config("private")
+            dev.close_config()
+            dev.close()
         """
         try:
             #attempt to open a configuration
@@ -110,6 +133,19 @@ class JunosDevice():
     def close_config(self):
         """
         Closes the exiting opened configuration
+
+        Example:
+
+        .. code-block:: python
+
+            from pyJunosManager import JunosDevice
+
+            dev = JunosDevice(host="1.2.3.4",username="root",password="Juniper")
+            dev.open()
+            dev.open_config()
+            dev.close_config()
+            dev.close()
+
         """
         try:
             self.dev.rpc.close_configuration()
@@ -120,6 +156,25 @@ class JunosDevice():
         """
         :template: A templated string using Jinja2 templates
         :template_vars: A dict containing the vars used in the :template: string
+
+        Uses standard `Jinga2`_ Templating.
+
+        .. _`Jinga2`: http://jinja.pocoo.org/
+
+        Example:
+
+        .. code-block:: python
+
+            from pyJunosManager import JunosDevice
+
+            config_template = "system { host-name {{ hostname }}; }"
+
+            dev = JunosDevice(host="1.2.3.4",username="root",password="Juniper")
+            dev.open()
+            dev.load_config_template(config_template,hostname="foo")
+            dev commit_and_quit()
+            dev.close()
+
         """
         new_template = Template(template)
         final_template = new_template.render(template_vars)
@@ -133,6 +188,18 @@ class JunosDevice():
         """
         Commits exiting configuration
 
+        Example:
+
+        .. code-block:: python
+
+            from pyJunosManager import JunosDevice
+
+            dev = JunosDevice(host="1.2.3.4",username="root",password="Juniper")
+            dev.open()
+            dev.open_config()
+            dev.commit_config()
+            dev.close_config()
+            dev.close()
         """
         try:
             self.dev.rpc.commit_configuration()
@@ -141,7 +208,19 @@ class JunosDevice():
 
     def commit_and_quit(self):
         """
-        Commits and closes the currently open configration
+        Commits and closes the currently open configration. Saves a step by not needing to manually close the config.
+
+        Example:
+
+        .. code-block:: python
+
+            from pyJunosManager import JunosDevice
+
+            dev = JunosDevice(host="1.2.3.4",username="root",password="Juniper")
+            dev.open()
+            dev.load_config_template("system{ host-name {{ hostname }};}",hostname="foo")
+            dev commit_and_quit()
+            dev.close()
 
         """
         try:

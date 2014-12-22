@@ -15,4 +15,8 @@ publish:
 
 clean:
 	@echo "Cleaning Python builds..."
-	python setup.py clean
+	python setup.py clean --all
+
+clean_dist:
+	@echo "Cleaning All Python builds..."
+	python setup.py clean --all
