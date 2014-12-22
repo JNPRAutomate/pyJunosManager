@@ -157,7 +157,7 @@ class JunosDevice():
         :template: A templated string using Jinja2 templates
         :template_vars: A dict containing the vars used in the :template: string
 
-        Uses standard `Jinga2`_ Templating.
+        Uses standard `Jinja2`_ Templating.
 
         .. _`Jinja2`: http://jinja.pocoo.org/
 
