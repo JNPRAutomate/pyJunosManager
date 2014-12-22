@@ -17,6 +17,7 @@ clean:
 	@echo "Cleaning Python builds..."
 	python setup.py clean --all
 
-clean_dist:
+clean_all:
 	@echo "Cleaning All Python builds..."
 	python setup.py clean --all
+	rm -fr dist/
