@@ -159,7 +159,7 @@ class JunosDevice():
 
         Uses standard `Jinga2`_ Templating.
 
-        .. _`Jinga2`: http://jinja.pocoo.org/
+        .. _`Jinja2`: http://jinja.pocoo.org/
 
         Example:
 
