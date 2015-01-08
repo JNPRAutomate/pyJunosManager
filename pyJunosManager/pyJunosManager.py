@@ -152,10 +152,11 @@ class JunosDevice():
         except Exception as err:
             print err
 
-    def load_config_template(self,template,template_vars):
+    def load_config_template(self,template,template_vars,type="text"):
         """
         :template: A templated string using Jinja2 templates
         :template_vars: A dict containing the vars used in the :template: string
+        :type: The type of configuration to load. The default is "text" or a standard Junos config block. Other options are: "set" for set style commands, "xml" for xml configs
 
         Uses standard `Jinja2`_ Templating.
 
@@ -181,7 +182,7 @@ class JunosDevice():
         final_template = new_template.render(template_vars)
 
         try:
-            output = self.dev.cu.load(final_template,format="text",merge=True)
+            output = self.dev.cu.load(final_template,format=type,merge=True)
         except Exception as err:
             print err
 
