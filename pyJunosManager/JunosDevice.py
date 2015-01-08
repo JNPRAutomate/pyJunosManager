@@ -171,6 +171,7 @@ class JunosDevice():
 
             dev = JunosDevice(host="1.2.3.4",username="root",password="Juniper")
             dev.open()
+            dev.open_config()
             dev.load_config_template(config_template,hostname="foo")
             dev commit_and_quit()
             dev.close()
