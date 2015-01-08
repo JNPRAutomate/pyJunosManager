@@ -11,7 +11,7 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-.. automodule:: pyJunosManager.JunosDevice
+.. automodule:: pyJunosManager
    :members:
    :undoc-members:
    :show-inheritance:
