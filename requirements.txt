@@ -6,7 +6,7 @@ junos-eznc==1.0.2
 lxml==3.4.1
 ncclient==0.4.2
 netaddr==0.7.12
-paramiko==1.15.1
+paramiko==2.0.9
 pyJunosManager==0.1
 pycrypto==2.6.1
 scp==0.8.0
